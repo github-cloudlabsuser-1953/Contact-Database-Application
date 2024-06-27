@@ -94,5 +94,12 @@ namespace CRUD_application_2.Controllers
             userlist.Remove(user);
             return RedirectToAction("Index");
         }
+
+        // GET: User/Search
+        public ActionResult Search(string searchTerm)
+        {
+            var searchResults = userlist.Where(u => u.Name.Contains(searchTerm) || u.Email.Contains(searchTerm)).ToList();
+            return View(searchResults);
+        }
     }
 }
